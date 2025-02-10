@@ -1,0 +1,52 @@
+# Byte-compiled files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environments
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE и редакторы
+.vscode/
+.idea/
+*.swp
+
+# Логи и временные файлы
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.pid
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Секретные файлы
+.env
+*.env
+
+# Сборка
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Caches
+*.cache
+*.pytest_cache/
+
+# Тестовые файлы
+.coverage
+.tox/
+
+test.py
+*.sqlite3
+firebase_client_info.json
+firebase_driver_info.json
