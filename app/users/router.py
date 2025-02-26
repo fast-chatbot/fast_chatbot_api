@@ -34,6 +34,7 @@ async def send_code(data: SendCodeRequest):
 
         return {"message": "OTP sent successfully"}
     except Exception as e:
+        print(e)
         raise HTTPException(status_code=400, detail="Error sending the OTP-code")
 
 
