@@ -14,7 +14,7 @@ settings = get_settings()
 router = APIRouter(prefix='/chatbot', tags=['Chatbot'])
 
 
-@router.get("/all", response_model=AllResponse)
+@router.get("/all", response_model=list[AllResponse])
 async def get_chatbots():
     try:
         return await ChatbotsDAO.find_all(user_id=1)

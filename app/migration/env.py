@@ -11,8 +11,9 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 from alembic import context
 from app.database import Base, database_url
 from app.users.models import User
-from app.chatbots.models import Chatbot, Prompt
 from app.services.whatsapp.models import WhatsAppInstance
+from app.chatbots.models import Chatbot, Prompt
+
 
 
 config = context.config
