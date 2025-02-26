@@ -15,18 +15,18 @@ router = APIRouter(prefix='/chatbot', tags=['Chatbot'])
 
 
 @router.get("/all", response_model=AllResponse)
-async def get_chatbots(user_data: User = Depends(get_current_user)):
+async def get_chatbots():
     try:
-        return await ChatbotsDAO.find_all(user_id=user_data.id)
+        return await ChatbotsDAO.find_all(user_id=1)
     except Exception as e:
         raise HTTPException(status_code=400, detail="Error receiving the chatbots")
 
 
 @router.post("/create", response_model=CreateResponse, status_code=status.HTTP_201_CREATED)
-async def chatbot_create(data: CreateRequest, user_data: User = Depends(get_current_user)):
+async def chatbot_create(data: CreateRequest):
     try:
         chatbot = await ChatbotsDAO.add(
-            user_id=user_data.id,
+            user_id=1,
             name=data.name,
             model=data.model
         )
