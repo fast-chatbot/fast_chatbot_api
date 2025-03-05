@@ -30,6 +30,8 @@ async def send_code(data: SendCodeRequest):
         otp = generate_otp()
         await redis_client.setex(f"fast_chatbot_online_otp:{data.email}", 900, otp)
 
+        print(data.email)
+        print(otp)
         send_email(data.email, otp)
 
         return {"message": "OTP sent successfully"}

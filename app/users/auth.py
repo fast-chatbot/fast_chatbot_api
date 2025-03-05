@@ -48,11 +48,11 @@ def send_email(receiver_email: str, otp: str):
 
     msg.attach(MIMEText(body, 'plain'))
     print(000)
-    context = ssl.create_default_context()
+    # context = ssl.create_default_context()
 
     try:
         with smtplib.SMTP(smtp_server, smtp_port) as server:
-            server.starttls(context=context)
+            server.starttls()
             server.login(smtp_username, smtp_password)
             server.sendmail(sender_email, receiver_email, msg.as_string())
             print("Письмо успешно отправлено.")
