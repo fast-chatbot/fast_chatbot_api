@@ -51,7 +51,7 @@ class BaseDAO:
             Список экземпляров модели.
         """
         async with async_session_maker() as session:
-            query = select(cls.model).filter_by(**filter_by)
+            query = select(cls.model).filter_by(**filter_by).order_by(cls.model.id.desc())
             result = await session.execute(query)
             return result.scalars().all()
 

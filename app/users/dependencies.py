@@ -13,8 +13,9 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 async def get_current_user(token: str = Depends(oauth2_scheme)):
     try:
-        auth_data = get_settings()
-        payload = jwt.decode(token, auth_data['secret_key'], algorithms=auth_data['algorithm'])
+        settings = get_settings()
+
+        payload = jwt.decode(token, settings['secret_key'], algorithms=settings['algorithm'])
     except JWTError:
         raise NoJwtException
 

@@ -1,6 +1,5 @@
 import random
 import smtplib
-import ssl
 
 from jose import jwt
 from datetime import datetime, timedelta, timezone
@@ -28,8 +27,6 @@ def generate_otp() -> str:
 
 
 def send_email(receiver_email: str, otp: str):
-    print(receiver_email)
-    print(otp)
     settings = get_settings()
 
     smtp_server = settings['smtp_server']
@@ -47,8 +44,6 @@ def send_email(receiver_email: str, otp: str):
     msg['Subject'] = subject
 
     msg.attach(MIMEText(body, 'plain'))
-    print(000)
-    # context = ssl.create_default_context()
 
     try:
         with smtplib.SMTP(smtp_server, smtp_port) as server:
@@ -58,15 +53,3 @@ def send_email(receiver_email: str, otp: str):
             print("Письмо успешно отправлено.")
     except Exception as e:
         print(f"Ошибка при отправке письма: {e}")
-
-    # with smtplib.SMTP_SSL(smtp_server, 465) as server:
-    #     server.login(smtp_username, smtp_password)
-    #     server.sendmail(sender_email, receiver_email, msg.as_string())
-
-
-
-# Thank you for waiting.
-# For the outgoing configuration, please use:
-#
-# smtp.dreamhost.com
-# Port 587 with SSL or  STARTTLS

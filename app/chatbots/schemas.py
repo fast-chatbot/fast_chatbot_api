@@ -15,7 +15,6 @@ class AllResponse(BaseModel):
 
 class CreateRequest(BaseModel):
     name: str
-    model: str
 
 
 class CreateResponse(BaseModel):
@@ -26,7 +25,6 @@ class CreateResponse(BaseModel):
 class UpdateRequest(BaseModel):
     chatbot_id: int
     name: str
-    model: str
 
 
 class UpdateResponse(BaseModel):

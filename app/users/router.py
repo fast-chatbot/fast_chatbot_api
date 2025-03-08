@@ -62,7 +62,7 @@ async def verify_code(data: VerifyCodeRequest):
             )
 
         access_token = create_access_token(
-            data={"sub": data.email},
+            data={"sub": str(user.id)},
             expires_delta=timedelta(days=365)
         )
     except Exception as e:
