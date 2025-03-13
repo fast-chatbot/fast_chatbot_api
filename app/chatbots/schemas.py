@@ -3,7 +3,7 @@ from datetime import datetime
 from pydantic import BaseModel
 
 
-class AllResponse(BaseModel):
+class AllChatbotsResponse(BaseModel):
     id: int
     user_id: int
     name: str
@@ -39,11 +39,23 @@ class DeleteResponse(BaseModel):
     message: str
 
 
-class AddPromptRequest(BaseModel):
+class AllPromptsResponse(BaseModel):
+    id: int
     chatbot_id: int
+    name: str
     text: str
     prompt_type: str
+    is_active: bool
+    created_at: datetime
+    updated_at: datetime
 
+
+class AddPromptRequest(BaseModel):
+    chatbot_id: int
+    name: str
+    text: str
+    prompt_type: str
+    is_active: bool
 
 class AddPromptResponse(BaseModel):
     message: str
@@ -58,4 +70,12 @@ class UpdatePromptRequest(BaseModel):
 
 
 class UpdatePromptResponse(BaseModel):
+    message: str
+
+
+class DeletePromptRequest(BaseModel):
+    prompt_id: int
+
+
+class DeletePromptResponse(BaseModel):
     message: str
