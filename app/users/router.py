@@ -32,7 +32,7 @@ async def send_code(data: SendCodeRequest):
 
         print(data.email)
         print(otp)
-        # send_email(data.email, otp)
+        send_email(data.email, otp)
 
         return {"message": "OTP sent successfully"}
     except Exception as e:
