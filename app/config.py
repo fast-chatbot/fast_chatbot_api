@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     PG_USER: str
     PG_PASSWORD: str
     PG_DATABASE: str
+    OPENAI_API_KEY: str
 
     model_config = SettingsConfigDict(
         env_file=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env")
@@ -40,4 +41,5 @@ def get_settings():
             "pg_port": settings.PG_PORT,
             "pg_user": settings.PG_USER,
             "pg_password": settings.PG_PASSWORD,
-            "pg_database": settings.PG_DATABASE}
+            "pg_database": settings.PG_DATABASE,
+            "openai_api_key": settings.OPENAI_API_KEY}

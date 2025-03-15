@@ -13,7 +13,7 @@ from app.database import Base, database_url
 from app.users.models import User
 from app.services.whatsapp.models import WhatsAppInstance
 from app.chatbots.models import Chatbot, Prompt
-
+from app.chat_with_chatbot.models import UserChatbotTestMessage
 
 
 config = context.config

@@ -16,6 +16,11 @@ settings = get_settings()
 router = APIRouter(prefix='/chatbot', tags=['Chatbot'])
 
 
+# @router.get("/test")
+# async def get_chatbots1():
+#     data = await GptChatBot('d').ask('')
+#     print(data)
+
 @router.get("/all", response_model=list[AllChatbotsResponse])
 async def get_chatbots(user_data: User = Depends(get_current_user)):
     try:
@@ -102,23 +107,23 @@ async def prompt_create(data: AddPromptRequest, user_data: User = Depends(get_cu
 
 @router.post("/update_prompt", response_model=UpdatePromptResponse)
 async def prompt_update(data: UpdatePromptRequest, user_data: User = Depends(get_current_user)):
-    try:
-        prompt_data = await PromptsDAO.find_one_or_none(id=data.prompt_id)
-        chatbot_data = await ChatbotsDAO.find_one_or_none(id=prompt_data.chatbot_id)
+    # try:
+    prompt_data = await PromptsDAO.find_one_or_none(id=data.prompt_id)
+    chatbot_data = await ChatbotsDAO.find_one_or_none(id=prompt_data.chatbot_id)
 
-        if chatbot_data.user_id == user_data.id:
-            await PromptsDAO.update(
-                filter_by={'id': data.promt_id},
-                name=data.name,
-                text=data.text,
-                is_active=data.is_active
-            )
-        else:
-            raise HTTPException(status_code=404, detail="Prompt not found")
+    if chatbot_data.user_id == user_data.id:
+        await PromptsDAO.update(
+            filter_by={'id': data.prompt_id},
+            name=data.name,
+            text=data.text,
+            is_active=data.is_active
+        )
+    else:
+        raise HTTPException(status_code=404, detail="Prompt not found")
 
-        return {"message": "Prompt updated successfully"}
-    except Exception as e:
-        raise HTTPException(status_code=400, detail="Failed to update prompt")
+    return {"message": "Prompt updated successfully"}
+    # except Exception as e:
+    #     raise HTTPException(status_code=400, detail="Failed to update prompt")
 
 
 @router.post("/delete_prompt", response_model=DeletePromptResponse)
